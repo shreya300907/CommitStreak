@@ -17,8 +17,8 @@ export default function Root(){
                 Get Started
                 <TrendingUp className="h-6 w-6"/>
             </Link>
-            <div className="flex flex-col gap-1 justify-center items-center">
-                <div className="text-secondary-text font-extrabold text-center text-3xl">
+            <div className="flex flex-col gap-1 justify-center items-center  mt-12">
+                <div className="text-secondary-text font-extrabold uppercase text-center text-5xl">
                     Features
                 </div>
                 <div className="text-primary-text font-normal text-center text-md">
