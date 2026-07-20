@@ -17,16 +17,14 @@ export default function Root(){
     const cardVariants = {
         hidden: { 
             opacity: 0, 
-            y: 40 
+            y: 30 
         },
         visible: { 
             opacity: 1, 
             y: 0, 
             transition: { 
                 type: "spring", 
-                stiffness: 70, 
-                damping: 15,
-                mass: 0.8
+                stiffness: 60
             } 
         },
     };
@@ -37,7 +35,7 @@ export default function Root(){
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="text-secondary-text font-extrabold text-center text-2xl sm:text-5xl leading-snug"
+                className="text-secondary-text font-extrabold text-center text-3xl sm:text-5xl leading-snug"
             >
                 One dashboard for <span className="italic text-foreground">every coding streak</span><br/> you're keeping..
             </motion.div>
