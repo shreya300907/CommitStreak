@@ -36,7 +36,7 @@ export default function ConnectHandle({platform,load,sourceType}){
     }
 
     return(
-        <div className="bg-secondary-bg rounded-lg shadow-sm shadow-primary-text p-8 flex flex-col gap-4 mx-auto my-30 max-w-md">
+        <div className="bg-secondary-bg rounded-lg shadow-sm shadow-primary-text p-2 sm:p-8 flex flex-col gap-3 sm:gap-4 mx-4 my-30 sm:max-w-md">
             <div>
                 <h2 className="text-2xl font-bold text-secondary-text">Connect {platform}</h2>
                 <p className="text-primary-text text-sm mt-1">
@@ -49,7 +49,7 @@ export default function ConnectHandle({platform,load,sourceType}){
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder={`Your ${platform} username`}
                     required
-                    className="border rounded-md px-3 py-2 text-primary-text"
+                    className="border rounded-md px-2 sm:px-3 py-2 text-primary-text"
                 />
                 {!isBoolean && (
                     <input
@@ -58,7 +58,7 @@ export default function ConnectHandle({platform,load,sourceType}){
                         onChange={(e) => setGoalTarget(e.target.value)}
                         placeholder="Daily goal (e.g. 3 problems)"
                         required
-                        className="border rounded-md px-3 py-2 text-primary-text"
+                        className="border rounded-md px-2 sm:px-3 py-2 text-primary-text"
                     />
                 )}
                 {error && <p className="text-red-500 text-sm">{error}</p>}

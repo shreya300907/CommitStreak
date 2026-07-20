@@ -39,7 +39,7 @@ export default function InvalidHanlde({platform,load}){
     }
 
     return(
-        <div className="bg-secondary-bg rounded-lg shadow-sm shadow-primary-text p-8  mx-auto my-30 flex flex-col gap-4 max-w-md">
+        <div className="bg-secondary-bg rounded-lg shadow-sm shadow-primary-text p-2 sm:p-8 flex flex-col gap-3 sm:gap-4 mx-2 my-30 sm:max-w-md">
             <div>
                 <h2 className="text-2xl font-bold text-secondary-text">Fix your {platform} handle</h2>
                 <p className="text-primary-text text-sm mt-1">

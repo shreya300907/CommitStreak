@@ -3,8 +3,9 @@ import ConnectHandle from "@/components/connectHandle";
 import Heatmap from "@/components/heatmap";
 import InvalidHandle from "@/components/invalidHandle";
 import { apiFetch } from "@/lib/apiFetch";
-import { Goal, Link2OffIcon, Repeat2Icon } from "lucide-react";
+import { Goal, Link2OffIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Codeforces(){
     const [data,setData]=useState(null);
@@ -56,8 +57,6 @@ export default function Codeforces(){
 
     async function refresh(){
         setSyncing(true);
-        const tasksRes= await apiFetch('/tasks');
-        const tasks=await tasksRes.json();
         const cfTask= tasks.find(t => t.sourceType==='codeforces');
         if(cfTask){
             await apiFetch(`/tasks/${cfTask._id}/sync/codeforces`,{
@@ -87,52 +86,77 @@ export default function Codeforces(){
         );
     }
     const active = view === "global" ? data.global : data.commitStreak;
+
+    const containerVariants = {
+        hidden: { opacity: 0, y: 15 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.4,
+                ease: "easeOut",
+                staggerChildren: 0.08
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 10 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.3 } }
+    };
+
     return (
-        <div className="px-8 py-8 flex flex-col gap-6 ">
-            <div className="flex flex-row justify-between">
-                <div className="flex flex-col ">
-                    <span className="text-6xl font-extrabold text-foreground">Codeforces Dashboard</span>
-                    <span className="text-md font-medium text-primary-text">Connect as: <span className="text-md font-semibold text-[#00a572]">{data.username}</span></span>
+        <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="px-2 sm:px-8 py-8 flex flex-col gap-4 sm:gap-6"
+        >
+            <motion.div variants={itemVariants} className="flex flex-col gap-2 sm:gap-0 sm:flex-row justify-between">
+                <div className="flex flex-col">
+                    <span className="text-2xl sm:text-6xl font-extrabold text-foreground">Codeforces Dashboard</span>
+                    <span className="text-sm sm:text-md font-medium text-primary-text">Connect as: <span className="text-sm sm:text-md font-semibold text-[#00a572]">{data.username}</span></span>
                 </div>
-                <div className="flex flex-row gap-6">
-                    <div className="px-6 py-4 h-fit my-auto  flex flex-col gap-1 bg-secondary-bg rounded-lg justify-center">
+                <div className="flex flex-row gap-3 sm:gap-6">
+                    <div className="px-3 sm:px-6 py-2 sm:py-4 h-fit my-auto flex flex-col gap-1 bg-secondary-bg rounded-lg justify-center">
                         <span className="text-xs uppercase font-medium font-mono text-primary-text text-center">
                             Rating
                         </span>
-                        <span className="tracking-wider text-2xl font-bold text-[#00a572]">
+                        <span className="tracking-wider text-sm sm:text-2xl font-bold text-[#00a572]">
                             {data.rating}
                         </span>
                     </div>
-                    <div className="px-6 py-3 h-fit my-auto flex flex-col gap-1 bg-secondary-bg rounded-lg justify-center">
+                    <div className="px-3 sm:px-6 py-2 sm:py-4 h-fit my-auto flex flex-col gap-1 bg-secondary-bg rounded-lg justify-center">
                         <span className="text-xs uppercase font-medium font-mono text-primary-text text-center">
                             Rank
                         </span>
-                        <span className="capitalize tracking-wide text-2xl font-bold text-foreground">
+                        <span className="capitalize tracking-wide text-sm sm:text-2xl font-bold text-foreground">
                             {data.rank}
                         </span>
                     </div>
                 </div>
-            </div>
-            <div className="shadow-sm shadow-primary-text bg-secondary-bg rounded-lg p-6 flex flex-col gap-4">
-                <div className="flex flex-row justify-between">
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="shadow-sm shadow-primary-text bg-secondary-bg rounded-lg p-3 sm:p-6 flex flex-col gap-4">
+                <div className="flex flex-col gap-2 sm:gap-0 sm:flex-row justify-between">
                     <div className="flex flex-col">
-                        <h2 className="text-secondary-text text-2xl font-bold">
+                        <h2 className="text-secondary-text text-xl sm:text-2xl font-bold">
                             Coding Activity
                         </h2>
-                        <p className="text-primary-text text-sm">
+                        <p className="text-primary-text text-xs sm:text-sm">
                             Submission frequency across the last 52 weeks
                         </p>
                     </div>
-                    <div className="flex flex-row gap-6">
+                    <div className="flex flex-row gap-4 sm:gap-6">
                         <select
                             value={view}
                             onChange={(e)=>setView(e.target.value)}
-                            className="w-full h-fit py-2 px-3 border rounded-md text-sm bg-background text-primary-text "
+                            className="w-full h-fit py-2 px-3 border rounded-md text-sm bg-background text-primary-text"
                         >
                             <option value="global">Global</option>
                             <option value="commitStreak">CommitStreak</option>
                         </select>
-                        <button onClick={()=>refresh()} disabled={syncing} className="disabled:opacity-50 bg-foreground h-fit cursor-pointer rounded-lg  font-medium text-secondary-bg text-sm px-4 py-2">
+                        <button onClick={()=>refresh()} disabled={syncing} className="disabled:opacity-50 bg-foreground h-fit cursor-pointer rounded-lg font-medium text-secondary-bg text-sm px-4 py-2">
                             {syncing ? "Syncing..." : "Refresh"}
                         </button>
                     </div>
@@ -140,51 +164,34 @@ export default function Codeforces(){
                 <Heatmap data={active.heatmap} />
                   
                 <div className="flex flex-row justify-between">
-                    <div className="flex flex-row gap-6">
-                        <div className="px-6 py-4 h-full  flex flex-col gap-1 bg-primary-bg rounded-lg justify-center">
+                    <div className="flex flex-row gap-3 sm:gap-6">
+                        <div className="px-3 sm:px-6 py-2 sm:py-4 h-full flex flex-col gap-1 bg-primary-bg rounded-lg justify-center">
                             <span className="text-xs uppercase font-medium font-mono text-primary-text text-center">
                                 Current Streak
                             </span>
-                            <span className="tracking-wider text-2xl font-bold text-[#00a572]">
+                            <span className="tracking-wider text-sm sm:text-2xl font-bold text-[#00a572]">
                                 {active.cur} Days
                             </span>
                         </div>
-                        <div className="px-6 py-3 h-full flex flex-col gap-1 bg-primary-bg rounded-lg justify-center">
+                        <div className="px-3 sm:px-6 py-2 sm:py-4 h-full flex flex-col gap-1 bg-primary-bg rounded-lg justify-center">
                             <span className="text-xs uppercase font-medium font-mono text-primary-text text-center">
                                 Longest Streak
                             </span>
-                            <span className="capitalize tracking-wide text-2xl font-bold text-foreground">
+                            <span className="capitalize tracking-wide text-sm sm:text-2xl font-bold text-foreground">
                                 {active.longest} Days
                             </span>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className=" w-full grid grid-cols-2 gap-x-8 ">
-                {/* <div className="flex flex-col w-full px-8 py-6 gap-6 bg-secondary-bg rounded-lg shadow-sm shadow-primary-text">
-                    <h2 className="flex flex-row gap-4 font-semibold text-secondary-text text-xl">
-                        <Repeat2Icon className="h-6 w-6"/>
-                        Frequency
-                    </h2>
-                    <select
-                        className="w-full px-4 py-4 border rounded-md text-lg bg-background text-primary-text "
-                        value={frequency}
-                        onChange={(e) => setFrequency(e.target.value)}
-                        >
-                        <option value="daily">Daily</option>
-                        <option value="weekly">Weekly</option>
-                        <option value="monthly">Monthly</option>
-                    </select>
-                    <button onClick={()=>save()} className="cursor-pointer border border-foreground text-foreground w-full py-2 font-mono font-semibold text-center">
-                        Save Preferences
-                    </button>
-                </div> */}
-                <div className="w-full flex flex-col px-8 py-4 gap-3 bg-secondary-bg rounded-lg shadow-sm shadow-primary-text ">
-                    <h2 className="flex flex-row gap-4 font-semibold text-secondary-text text-xl">
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="w-full grid grid-cols-1 sm:grid-cols-2 gap-x-0 sm:gap-y-0 gap-y-4 sm:gap-x-8">
+                <div className="w-full flex flex-col px-2 sm:px-8 py-4 gap-2 sm:gap-3 bg-secondary-bg rounded-lg shadow-sm shadow-primary-text">
+                    <h2 className="flex flex-row gap-2 sm:gap-4 font-semibold text-secondary-text text-xl">
                         <Goal className="h-6 w-6"/>
                         Goal
                     </h2>
-                    <p className="text-sm text-primary-text">
+                    <p className="text-xs sm:text-sm text-primary-text">
                         Set the number of competitive problems you aim to solve.
                     </p>
                     <input
@@ -192,25 +199,25 @@ export default function Codeforces(){
                         placeholder="no. of problems"
                         value={goalTarget}
                         onChange={(e) => setGoalTarget(e.target.value)}
-                        className="border rounded-md px-3 py-2 w-full text-primary-text mb-4"
+                        className="border rounded-md px-3 py-2 w-full text-primary-text mb-2 sm:mb-4"
                     />
                     <button onClick={()=>save()} className="cursor-pointer border border-foreground text-foreground w-full py-2 font-mono font-semibold text-center">
                         Save 
                     </button>
                 </div>
-                <div className="w-full flex flex-col px-8 py-4 gap-3 bg-secondary-bg rounded-lg shadow-sm shadow-primary-text">
-                    <h2 className="flex flex-row gap-4 font-semibold text-secondary-text text-xl">
+                <div className="w-full flex flex-col px-2 sm:px-8 py-4 gap-2 sm:gap-3 bg-secondary-bg rounded-lg shadow-sm shadow-primary-text">
+                    <h2 className="flex flex-row gap-2 sm:gap-4 font-semibold text-secondary-text text-xl">
                         <Link2OffIcon className="h-6 w-6"/>
                         Integration
                     </h2>
-                    <div className=" text-sm text-primary-text flex flex-row gap-8  items-center">
+                    <div className="text-xs sm:text-sm text-primary-text flex flex-row gap-8 items-center">
                         <span>API Status:</span> 
                         <span className="text-[#00a572] px-2 py-0.5 bg-[#00a572]/30 rounded-lg shadow-sm shadow-primary-text">Connected</span></div>
                     <button onClick={()=>disconnect()} className="mt-3 bg-red-600 text-white rounded-md px-3 py-2 text-sm w-full cursor-pointer">
                         Disconnect Codeforces
                     </button>
                 </div>
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     )
 }

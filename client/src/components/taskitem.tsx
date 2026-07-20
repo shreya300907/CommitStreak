@@ -19,8 +19,8 @@ export default function TaskItem({task,onToggle,onDelete}){
     }
 
     return(
-        <div className="bg-background px-8 py-4 flex flex-row justify-between rounded-lg shadow-xs shadow-primary-text">
-            <div className="flex flex-row gap-4 justify-center items-center">
+        <div className="bg-background px-3 py-2 sm:px-8 sm:py-4 flex flex-row justify-between rounded-lg shadow-xs shadow-primary-text">
+            <div className="flex flex-row gap-2 sm:gap-4 justify-center items-center">
                 <div>
                     <input
                         type="checkbox"
@@ -28,24 +28,24 @@ export default function TaskItem({task,onToggle,onDelete}){
                         onChange={isAutoSynced ? undefined : onToggle}
                         disabled={isAutoSynced}
                         title={isAutoSynced ? "Synced automatically from " + task.sourceType : ""}
-                        className={`w-5 h-5 ${isAutoSynced ? "cursor-not-allowed opacity-60" : "cursor-pointer"}`}
+                        className={`sm:w-5 sm:h-5 w-3 h-3 ${isAutoSynced ? "cursor-not-allowed opacity-60" : "cursor-pointer"}`}
                     />
                 </div>
                 <div className="flex flex-col">
-                    <div className={` font-bold text-xl ${done ? "line-through text-primary-text ": "text-secondary-text"}`}>
+                    <div className={` font-bold text-lg sm:text-xl ${done ? "line-through text-primary-text ": "text-secondary-text"}`}>
                         {task.title}
                     </div>
                     {!done ?
-                    (<div className={`text-primary-text capitalize font-medium items-center font-mono text-xs flex flex-row gap-1`}>
-                        {isAutoSynced ? <Lock className="h-3 w-3"/> : <Clock className="h-3 w-3"/>}
+                    (<div className={`text-primary-text capitalize font-medium items-center font-mono text-[10px]  sm:text-xs flex flex-row gap-1`}>
+                        {isAutoSynced ? <Lock className="sm:w-3 sm:h-3 w-2 h-2"/> : <Clock className="sm:w-3 sm:h-3 w-2 h-2"/>}
                         <span>
                           {isAutoSynced
                             ? `Synced from ${task.sourceType}`
                             : (task.frequency === 'custom' ? formatTimeLeft(task.deadline) : task.frequency)}
                         </span>
                     </div>):(
-                    <div className={`text-[#00a572] items-center font-medium font-mono text-sm flex flex-row gap-1`}>
-                        <CheckCircle className="h-3 w-3"/>
+                    <div className={`text-[#00a572] items-center font-medium font-mono text-[10px] sm:text-sm flex flex-row gap-1`}>
+                        <CheckCircle className="sm:w-3 sm:h-3 w-2 h-2"/>
                         <span>Completed</span>
                     </div>)}
                 </div>

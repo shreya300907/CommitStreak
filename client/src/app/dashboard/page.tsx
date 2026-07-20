@@ -12,7 +12,6 @@ export default function DashboardPage() {
     apiFetch('/users/me').then(res => res.json()).then((data)=>{
         setUser(data);
         setLoading(false);
-        console.log(data);
         if (data.onboarded) router.replace('/dashboard/focus');
         })
         .catch(err => {
@@ -26,7 +25,7 @@ export default function DashboardPage() {
     if(!user?.onboarded){
         return <Onboarding onComplete={(updatedUser) => {
           setUser(updatedUser);
-          router.push('/dashboard/focus');//change here if some trouble occurs
+          router.push('/dashboard/focus');
         }}/>
     }else{
         if (loading) {

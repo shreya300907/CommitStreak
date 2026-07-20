@@ -45,7 +45,7 @@ export default function Signup() {
     }
 
     return (
-        <div className="gap-8 mx-auto justify-center items-center flex flex-col my-auto">
+        <div className="px-2 gap-4 sm:gap-8 mx-auto justify-center items-center flex flex-col my-auto">
             <div className="flex flex-col items-center gap-1 sm:gap-4">
                 <div className="text-foreground p-1.5 flex items-center justify-center">
                     <Zap className="sm:w-25 sm:h-25 w-10 h-10" fill="currentColor" strokeWidth={0} />
@@ -54,17 +54,17 @@ export default function Signup() {
                     CommitStreak
                 </span>
             </div>
-            <div className="flex flex-col gap-2 bg-primary-bg rounded-xl border-btn-bg border-[0.5px] shadow-md shadow-btn-bg px-24 py-10">
-                <div className="text-secondary-text font-extrabold text-left text-4xl">
+            <div className="flex flex-col gap-1 sm:gap-2 bg-primary-bg rounded-xl border-btn-bg border-[0.5px] shadow-md shadow-btn-bg px-6 py-4 sm:px-24 sm:py-10">
+                <div className="text-secondary-text font-extrabold text-left text-xl sm:text-4xl">
                     Welcome to the Streak
                 </div>
-                <span className="text-primary-text text-left text-lg">
+                <span className="text-primary-text text-left text-xs sm:text-lg">
                     {step === "email" ? "Enter your email to start your sprint." : "Enter the code sent to your email."}
                 </span>
 
                 {step === "email" ? (
-                    <form className="mt-8 flex flex-col gap-3" onSubmit={handleRequestOtp}>
-                        <label className="text-primary-text text-left text-md font-mono tracking-wide">
+                    <form className="sm:mt-7 mt-4 flex flex-col gap-2 sm:gap-3" onSubmit={handleRequestOtp}>
+                        <label className="text-primary-text text-left text-sm sm:text-md font-mono tracking-wide">
                             Email Address
                         </label>
                         <Input
@@ -73,16 +73,16 @@ export default function Signup() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            className="border-[0.5px] border-slate-600"
+                            className="border-[0.5px] border-slate-600 text-primary-text"
                         />
-                        {error && <p className="text-red-500 text-sm">{error}</p>}
+                        {error && <p className="text-red-500 text-xs sm:text-sm">{error}</p>}
                         <button type="submit" disabled={loading} className="mt-2 bg-btn-bg text-btn-text text-md font-semibold cursor-pointer px-4 py-2 rounded-md font-mono hover:shadow-sm transition-all ease-in-out hover:scale-102 hover:shadow-btn-bg disabled:opacity-50">
                             {loading ? "Sending..." : "Send Code"}
                         </button>
                     </form>
                 ) : (
-                    <form className="mt-8 flex flex-col gap-3" onSubmit={handleVerifyOtp}>
-                        <label className="text-primary-text text-left text-md font-mono tracking-wide">
+                    <form className="mt-4 sm:mt-8 flex flex-col gap-2 sm:gap-3" onSubmit={handleVerifyOtp}>
+                        <label className="text-primary-text text-left text-sm sm:text-md font-mono tracking-wide">
                             6-digit OTP
                         </label>
                         <Input
@@ -91,9 +91,9 @@ export default function Signup() {
                             value={otp}
                             onChange={(e) => setOtp(e.target.value)}
                             required
-                            className="border-[0.5px] border-slate-600"
+                            className="border-[0.5px] border-slate-600 text-primary-text "
                         />
-                        {error && <p className="text-red-500 text-sm">{error}</p>}
+                        {error && <p className="text-red-500 text-xs sm:text-sm">{error}</p>}
                         <button type="submit" disabled={loading} className="mt-2 bg-btn-bg text-btn-text text-md font-semibold cursor-pointer px-4 py-2 rounded-md font-mono hover:shadow-sm transition-all ease-in-out hover:scale-102 hover:shadow-btn-bg disabled:opacity-50">
                             {loading ? "Verifying..." : "Verify & Continue"}
                         </button>

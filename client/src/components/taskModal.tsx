@@ -53,33 +53,33 @@ export default function AddTaskModal({ open, onOpenChange, onSuccess }: AddTaskM
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[425px] bg-primary-bg">
+      <DialogContent className="w-full sm:max-w-[425px] bg-primary-bg">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-secondary-text">Add New Task</DialogTitle>
-          <DialogDescription className="text-md text-primary-text">
+          <DialogTitle className="text-lg sm:text-xl font-bold text-secondary-text">Add New Task</DialogTitle>
+          <DialogDescription className="text-[13px] sm:text-md text-primary-text">
             Create a new task and start tracking it.
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleAddTask} className="flex flex-col gap-4 py-4">
+        <form onSubmit={handleAddTask} className="flex flex-col gap-2 sm:gap-4 py-4">
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium">Task Name</label>
+            <label className="text-xs sm:text-sm font-medium">Task Name</label>
             <input
               type="text"
               value={taskName}
               onChange={(e) => setTaskName(e.target.value)}
               placeholder="e.g., Watching lectures.."
-              className="text-primary-text w-full px-3 py-2 border rounded-md text-sm bg-background"
+              className="text-primary-text w-full px-3 py-2 border rounded-md text-xs sm:text-sm bg-background"
               required
             />
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium">Frequency</label>
+            <label className="text-xs sm:text-sm font-medium">Frequency</label>
             <select
               value={frequency}
               onChange={(e) => setFrequency(e.target.value)}
-              className="w-full px-3 py-2 border rounded-md text-sm bg-background text-primary-text "
+              className="w-full px-3 py-2 border rounded-md text-xs sm:text-sm bg-background text-primary-text "
             >
               <option value="daily">Daily</option>
               <option value="weekly">Weekly</option>
@@ -90,7 +90,7 @@ export default function AddTaskModal({ open, onOpenChange, onSuccess }: AddTaskM
 
           {frequency === 'custom' && (
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium">Deadline</label>
+              <label className="text-xs sm:text-sm font-medium">Deadline</label>
               <input
                 type="number"
                 value={durationDays}
@@ -100,7 +100,7 @@ export default function AddTaskModal({ open, onOpenChange, onSuccess }: AddTaskM
               />
             </div>
           )}
-          <DialogFooter className="mt-4 border-t border-primary-bg">
+          <DialogFooter className="mt-1 sm:mt-4 border-t border-primary-bg">
             <button 
               className="font-semibold flex-1 border-2 border-btn-bg px-4 py-2 rounded-md cursor-pointer" 
               onClick={() => onOpenChange(false)}
