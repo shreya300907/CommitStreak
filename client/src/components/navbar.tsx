@@ -7,7 +7,7 @@ import ThemeToggle from './themeToggle';
 export default function Navbar() {
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 w-full bg-background/70 backdrop-blur-md  transition-colors duration-200">
+    <header className="sticky top-0 left-0 right-0 z-50 w-full bg-background/70 backdrop-blur-md  transition-colors duration-200 shadow-md shadow-primary-text">
       <div className="max-w-[100vw] mx-auto px-2 sm:px-6 lg:px-10 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-1 sm:gap-3 group">
           <div className="bg-btn-bg text-btn-text p-1.5 rounded-md flex items-center justify-center transition-transform group-hover:scale-105">

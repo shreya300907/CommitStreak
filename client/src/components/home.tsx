@@ -17,12 +17,9 @@ export default function Root(){
                 Get Started
                 <TrendingUp className="h-6 w-6"/>
             </Link>
-            <div className="h-200">
-
-            </div>
             <div className="flex flex-col gap-1 justify-center items-center">
                 <div className="text-secondary-text font-extrabold text-center text-3xl">
-                    What it does <span className="italic text-foreground">today</span>
+                    Features
                 </div>
                 <div className="text-primary-text font-normal text-center text-md">
                     The core, waiting to serve you.
@@ -53,26 +50,26 @@ export default function Root(){
                         Streak Analytics
                     </div>
                     <div className="text-primary-text font-normal text-md">
-                        See goal completion, current and longest streaks at a glance with predictive health scores.
+                        See goal completion, current and longest streaks at a glance.
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col gap-1 justify-center items-center ">
+            {/* <div className="flex flex-col gap-1 justify-center items-center ">
                 <div className="text-secondary-text font-extrabold text-center text-3xl">
                     What's <span className="italic text-foreground">coming next</span>
                 </div>
                 <div className="text-primary-text font-normal text-center text-md">
                     Upcoming features to improve your experience.
                 </div>
-            </div>
-            <div className="w-full grid grid-cols-3 justify-items-center px-15 gap-x-8 mt-4 mb-8">
+            </div> */}
+            {/* <div className="w-full grid grid-cols-3 justify-items-center px-15 gap-x-8 mt-4 mb-8">
                 <div className="transition-all ease-in-out h-full bg-primary-bg p-6 rounded-lg flex flex-col gap-2 border-btn-bg border-[0.5px] shadow-sm hover:scale-102 hover:shadow-md shadow-btn-bg">
-                    <RefreshCw className="h-10 w-10 p-2 rounded-lg bg-background shrink-0 "/>
+                    <Bell className="h-10 w-10 p-2 rounded-lg bg-background shrink-0 "/>
                     <div className="text-secondary-text font-bold text-2xl">
-                        Auto-Sync
+                        Email Remainders
                     </div>
                     <div className="text-primary-text font-normal text-md">
-                        Pulls daily solve counts from Codeforces and LeetCode automatically. Focus on the code, not the count.
+                        A gentle remainder 
                     </div>
                 </div>
                 <div className="transition-all ease-in-out h-full bg-primary-bg p-6 rounded-lg flex flex-col gap-2 border-btn-bg border-[0.5px] shadow-sm hover:scale-102 hover:shadow-md shadow-btn-bg">
@@ -93,7 +90,7 @@ export default function Root(){
                         See goal completion, current and longest streaks at a glance with predictive health scores.
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div className="flex flex-col gap-4 m-8 justify-items-center px-24 py-10 bg-secondary-bg rounded-xl shadow-xs shadow-primary-text text-secondary-text font-bold text-center">
                 <div className=" text-4xl leading-snug">
                     Stop breaking streaks.<br/>
