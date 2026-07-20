@@ -16,7 +16,7 @@
 }
 
 /* 2. System Preference Dark Mode Backup */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0b1326;
     --foreground: #d0bcff ;
@@ -29,7 +29,7 @@
     --btn-bg: #d0bcff;
     --btn-text: #5516be;
   }
-}
+} */
 
 /* 3. Explicit Dark Theme Override */
 [data-theme='dark'] {
