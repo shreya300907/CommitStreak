@@ -80,7 +80,7 @@ export default function DashboardNav(){
           ))}
         </div>
 
-        <div className="border-t border-primary-text/10 flex flex-col gap-6 bg-background">
+        <div className="border-t border-primary-text/10 py-6 flex flex-col gap-6 bg-background">
           <div className="flex items-center justify-between px-3">
             <span className="text-primary-text font-medium text-base">Switch Theme</span>
             <ThemeToggle />
