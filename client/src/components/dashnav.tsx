@@ -24,7 +24,7 @@ export default function DashboardNav(){
 
   return (
     <header className="sticky top-0 left-0 right-0 z-50 w-full bg-background border-b border-primary-text/10 h-16 flex items-center">
-      <div className="w-full mx-auto pl-4 pr-2 sm:px-6 lg:px-6 flex items-center gap-16 sm:justify-between">
+      <div className="w-full mx-auto pl-4 pr-2 sm:px-6 lg:px-6 flex items-center justify-between">
         
         <Link href="/dashboard/focus" className="flex items-center gap-2 group z-50">
           <div className="bg-btn-bg text-btn-text p-1.5 rounded-md flex items-center justify-center">
@@ -80,7 +80,7 @@ export default function DashboardNav(){
           ))}
         </div>
 
-        <div className="border-t border-primary-text/10 pt-6 flex flex-col gap-6 bg-background">
+        <div className="border-t border-primary-text/10 flex flex-col gap-6 bg-background">
           <div className="flex items-center justify-between px-3">
             <span className="text-primary-text font-medium text-base">Switch Theme</span>
             <ThemeToggle />
