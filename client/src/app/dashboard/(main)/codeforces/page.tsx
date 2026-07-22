@@ -57,6 +57,8 @@ export default function Codeforces(){
 
     async function refresh(){
         setSyncing(true);
+        const taskRes= await apiFetch('/tasks');
+        const tasks=await taskRes.json();
         const cfTask= tasks.find(t => t.sourceType==='codeforces');
         if(cfTask){
             await apiFetch(`/tasks/${cfTask._id}/sync/codeforces`,{

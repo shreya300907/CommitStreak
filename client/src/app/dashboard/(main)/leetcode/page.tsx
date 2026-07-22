@@ -57,6 +57,8 @@ export default function Leetcode(){
 
     async function refresh(){
         setSyncing(true);
+        const taskRes= await apiFetch('/tasks');
+        const tasks=await taskRes.json();
         const lcTask= tasks.find(t => t.sourceType==='leetcode');
         if(lcTask){
             await apiFetch(`/tasks/${lcTask._id}/sync/leetcode`,{
@@ -120,18 +122,18 @@ export default function Leetcode(){
                 <div className="flex flex-row gap-3 sm:gap-6">
                     <div className="px-3 sm:px-6 py-2 sm:py-4 h-fit my-auto flex flex-col gap-1 bg-secondary-bg rounded-lg justify-center">
                         <span className="text-xs uppercase font-medium font-mono text-primary-text text-center">
-                            Rating
+                            Ranking
                         </span>
                         <span className="tracking-wider text-sm sm:text-2xl font-bold text-[#00a572]">
-                            {data.rating}
+                            {data.ranking ?? "—"}
                         </span>
                     </div>
                     <div className="px-3 sm:px-6 py-2 sm:py-4 h-fit my-auto flex flex-col gap-1 bg-secondary-bg rounded-lg justify-center">
                         <span className="text-xs uppercase font-medium font-mono text-primary-text text-center">
-                            Rank
+                            Total Solved
                         </span>
                         <span className="capitalize tracking-wide text-sm sm:text-2xl font-bold text-foreground">
-                            {data.rank}
+                            {data.totalSolved}
                         </span>
                     </div>
                 </div>

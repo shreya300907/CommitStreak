@@ -54,6 +54,8 @@ export default function Github(){
 
     async function refresh(){
         setSyncing(true);
+        const taskRes= await apiFetch('/tasks');
+        const tasks=await taskRes.json();
         const gTask= tasks.find(t => t.sourceType==='github');
         if(gTask){
             await apiFetch(`/tasks/${gTask._id}/sync/github`,{
